@@ -7,7 +7,8 @@ Simple tool for fetching and parsing users logged in in Steam from http://store.
 
 + Output : Stored in database.
 
-+ Sample : https://github.com/shaunidiot/steamstat_graph/img/example.png
++ Sample : 
+![Steam stats graph](https://raw.github.com/shaunidiot/steamstat_graph/master/img/example.png "Steam stats graph")
 
 ##Setup
 1. Clone this repo or just download `steamstat_graph.php` and `dump.sql`
@@ -26,7 +27,9 @@ What does this file do exactly?
 2. Store values in database
 
 ##Graph
-This project comes with a PHP graph library that renders a graph after retrieving the last 10 rows of data from the database. (Look at the sample above)
+This project comes with a PHP graph library that renders a graph after retrieving the last 10 rows of data from the database. 
+
+![Steam stats graph](https://raw.github.com/shaunidiot/steamstat_graph/master/img/example.png "Steam stats graph")
 
 ##Credit
 [PHPlot](http://www.phplot.com/)
