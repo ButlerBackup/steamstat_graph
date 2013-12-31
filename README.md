@@ -17,7 +17,7 @@ Simple tool for fetching and parsing users logged in in Steam from http://store.
 ##Cron
 Alow cron to run this file every half an hour or so. Stats will continue from the previous ending point.
 
-`0 */1 * * * php /home/root/steamstat_graph.php`
+`0,30 * * * * php /home/root/steamstat_graph.php`
 
 ###steamstat_graph.php
 What does this file do exactly?
