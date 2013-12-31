@@ -30,4 +30,5 @@ This project comes with a PHP graph library that renders a graph after retrievin
 
 ##Credit
 [PHPlot](http://www.phplot.com/)
+
 [Roboto font](https://developer.android.com/design/style/typography.html)
