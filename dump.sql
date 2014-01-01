@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2013 at 10:22 AM
+-- Generation Time: Jan 01, 2014 at 06:58 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -35,6 +35,20 @@ CREATE TABLE IF NOT EXISTS `data` (
   `date` varchar(15) NOT NULL,
   `value` int(8) NOT NULL,
   `unix` int(15) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `current` int(8) NOT NULL,
+  `peak` int(8) NOT NULL,
+  `time` int(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 

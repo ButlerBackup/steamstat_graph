@@ -11,16 +11,17 @@ Simple tool for fetching and parsing users logged in in Steam from http://store.
 ![Steam stats graph](https://raw.github.com/shaunidiot/steamstat_graph/master/img/example.png "Steam stats graph")
 
 ##Setup
-1. Clone this repo or just download `steamstat_graph.php` and `dump.sql`
+1. Clone this repo or just download `update.php` and `dump.sql`
 2. Create a new database and dump the `dump.sql` file.
-3. Run file.
+3. Edit database connection information in `update.php`.
+3. Run file. `php DIR/TO/FILE/update.php`
 
 ##Cron
 Alow cron to run this file every half an hour or so. Stats will continue from the previous ending point.
 
-`0,30 * * * * php /home/root/steamstat_graph.php`
+`0,30 * * * * php /home/root/update.php`
 
-###steamstat_graph.php
+###update.php
 What does this file do exactly?
 
 1. Grab and parse data from http://store.steampowered.com/stats/ (users logged in part)

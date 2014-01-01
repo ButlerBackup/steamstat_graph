@@ -24,6 +24,7 @@ function getData($url) {
 
 $db = new mysqli('localhost', 'root', '', 'steamstat_graph');
 
+
 if($db->connect_errno > 0){
 	die('Unable to connect to database [' . $db->connect_error . ']');
 }
@@ -36,9 +37,24 @@ if ($result = $db->query('SELECT unix FROM data ORDER BY id DESC LIMIT 1')) {
 
 $url = 'http://store.steampowered.com/stats/userdata.xml';
 
-$xml = object2array(simplexml_load_string(getData($url)));
+$xmlO = simplexml_load_string(getData($url));
+$xml = object2array($xmlO);
 
 $previousDate = 'STEAM_NULL_DATE';
+
+$max = str_replace(',', '', $xmlO->settingsNode->legendValue->attributes()->max);
+$cur = str_replace(',', '', $xmlO->settingsNode->legendValue->attributes()->cur);
+if ($result = $db->query("SELECT * FROM users WHERE current = '" . (int) $cur . "' AND peak = '".$max."'")) {
+	if ($result->num_rows < 1) { // if row doesn't exist (which means previous data and current data is different
+		$q = "INSERT INTO users (current, peak, time) VALUES ('". (int) $cur."', '".(int) $max."', '".time()."')";
+
+		if (!$db->query($q)) {
+			echo "[USERS-FAILED]: (" . $db->errno . ") " . $db->error . "\n";
+		} else {
+			echo "[USERS-SUCCESS] " . time() . '-' . (int) $cur . ':' . (int) $max . "\n";
+		}	
+	}
+}
 
 foreach($xml['detailNode']['node'] as $node) {
 
@@ -49,7 +65,6 @@ foreach($xml['detailNode']['node'] as $node) {
 	} else {
 		$previousDate = $nodeDate;
 	}
-	
 	
 	$unix = convertUnix($nodeDate, $node['@attributes']['dataInterval']);
 
