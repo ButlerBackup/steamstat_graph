@@ -16,7 +16,7 @@ $data = array(
 */
 if ($result = $db->query('SELECT * FROM data ORDER BY id DESC LIMIT 10')) {
 	while ($row = $result->fetch_assoc()) {
-		$data[] = array($row['date'] . ':' . $row['time'], $row['value']);
+		$data[] = array($row['date'] . ' : ' . $row['time'], $row['value']);
 	}
 	$result->free();
 }
@@ -25,11 +25,20 @@ $data = array_reverse($data);
 require 'phplot.php';
 $plot = new PHPlot(1200,600);
 $plot->SetDataValues($data);
-$plot->SetPlotType('bars');
+$plot->SetYDataLabelPos('plotin');
+$plot->SetPlotType('linepoints');
+$plot->SetDrawXDataLabelLines(true);
 $plot->SetImageBorderType('plain');
 $plot->SetDataType('text-data');
-$plot->SetDefaultTTFont('font/roboto.ttf');
+$plot->SetTTFPath('font');
+$plot->SetFontTTF('x_label', 'roboto.ttf', 8);
+$plot->SetFontTTF('y_label', 'roboto.ttf', 10);
+$plot->SetFontTTF('title', 'roboto.ttf', 16);
+$plot->SetFontTTF('x_title', 'roboto.ttf', 14);
+$plot->SetFontTTF('y_title', 'roboto.ttf', 14);
 $plot->SetXTitle('Time');
 $plot->SetYTitle('Users');
+$plot->SetXTickLabelPos('none');
+$plot->SetXTickPos('none');
 $plot->SetTitle('Steam Users Logged In');
 $plot->DrawGraph();
